@@ -1,0 +1,16 @@
+{
+  "name": "omdb-favorites",
+  "version": "0.0.1",
+  "description": "JS Server for WDI code challenge",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Austin Wood <i@austinwood.me> (https://github.com/indiesquidge)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.12.2",
+    "body-parser": "^1.12.0"
+  }
+}
