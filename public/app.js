@@ -19,10 +19,31 @@ newSearchForm.addEventListener('submit', e => {
 })
 
 function convertToElement(movie) {
-  return `<li class="movie"><h3>${movie.Title}</h3></li>`
+  return `<li class="movie" style="overflow: hidden; height: 22px;">
+            <h3 style="margin: 0;">${movie.Title}</h3>
+            <p><img src="${movie.Poster}" alt="movie-poster"></p>
+            <p>${movie.Type}</p>
+            <p>${movie.Year}</p>
+          </li>`
 }
 
 function renderMovies(movies) {
   const movieElements = movies.map(convertToElement).join('')
   movieList.innerHTML = movieElements
+  addToggleInfoEventListener()
+}
+
+function addToggleInfoEventListener() {
+  const movieElements = document.querySelectorAll('.movie')
+  movieElements.forEach(el =>
+    el.addEventListener('click', (e) => toggleInfo(e))
+  )
+}
+
+function toggleInfo(event) {
+  if (event.target.tagName === 'H3') {
+    const movieEl = event.target.parentElement
+    const currHeight = movieEl.clientHeight
+    movieEl.style.height = (currHeight === 22 ? 584 : 22) + 'px'
+  }
 }
