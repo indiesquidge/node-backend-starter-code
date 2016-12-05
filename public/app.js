@@ -24,20 +24,22 @@ function convertToElement(movie) {
             <p><img src="${movie.Poster}" alt="movie-poster"></p>
             <p>${movie.Type}</p>
             <p>${movie.Year}</p>
+            <button class="add-to-favorites">Favorite</button>
           </li>`
 }
 
 function renderMovies(movies) {
   const movieElements = movies.map(convertToElement).join('')
   movieList.innerHTML = movieElements
-  addToggleInfoEventListener()
+  movies.forEach((movie, i) => {
+    const movieEl = movieList.querySelectorAll('.movie')[i]
+    addToggleInfoEventListener(movieEl, movie)
+  })
 }
 
-function addToggleInfoEventListener() {
-  const movieElements = document.querySelectorAll('.movie')
-  movieElements.forEach(el =>
-    el.addEventListener('click', (e) => toggleInfo(e))
-  )
+function addToggleInfoEventListener(el, movie) {
+  el.addEventListener('click', toggleInfo)
+  el.addEventListener('click', e => addFavorite(e, movie))
 }
 
 function toggleInfo(event) {
@@ -46,4 +48,17 @@ function toggleInfo(event) {
     const currHeight = movieEl.clientHeight
     movieEl.style.height = (currHeight === 22 ? 584 : 22) + 'px'
   }
+}
+
+function addFavorite(event, movie) {
+  const addToFavoritesButton =
+    event.target.parentElement.querySelector('button.add-to-favorites')
+
+  addToFavoritesButton.addEventListener('click', () => {
+    fetch('http://localhost:3000/favorites', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(movie)
+    })
+  })
 }
