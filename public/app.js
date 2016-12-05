@@ -46,7 +46,7 @@ function toggleInfo(event) {
   if (event.target.tagName === 'H3') {
     const movieEl = event.target.parentElement
     const currHeight = movieEl.clientHeight
-    movieEl.style.height = (currHeight === 22 ? 584 : 22) + 'px'
+    movieEl.style.height = (currHeight === 22 ? 630 : 22) + 'px'
   }
 }
 
