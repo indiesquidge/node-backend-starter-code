@@ -11,22 +11,22 @@ app.use(bodyParser.json())
 app.use('/', express.static(path.join(__dirname, 'public')))
 
 app.get('/favorites', (req, res) => {
-  const data = fs.readFileSync('./data.json')
+  const favorites = fs.readFileSync('./favorites.json')
   res.setHeader('Content-Type', 'application/json')
-  res.send(data)
+  res.send(favorites)
 })
 
-app.get('favorites', (req, res) => {
-  if (!req.body.name || !req.body.oid) {
-    res.send('Error')
-    return
+app.post('/favorites', (req, res) => {
+  if (!req.body.Title) {
+    const requestBody = JSON.stringify(req.body, null, 2)
+    return res.status(422).send(`Reqest body invalid:\n\n${requestBody}\n\nPlease send a movie object with a Title.`)
   }
 
-  const data = JSON.parse(fs.readFileSync('./data.json'))
-  data.push(req.body)
-  fs.writeFile('./data.json', JSON.stringify(data))
+  const favorites = JSON.parse(fs.readFileSync('./favorites.json'))
+  favorites[req.body.imdbID] = req.body
+  fs.writeFile('./favorites.json', JSON.stringify(favorites))
   res.setHeader('Content-Type', 'application/json')
-  res.send(data)
+  res.send(favorites)
 });
 
 app.listen(3000, () => {
