@@ -12,7 +12,7 @@ newSearchForm.addEventListener('submit', e => {
 
   const movieTitle = newSearchInput.value
 
-  fetch(`http://www.omdbapi.com/?s=${movieTitle}`)
+  fetch(`https://www.omdbapi.com/?s=${movieTitle}`)
     .then(response => response.json())
     .then(json => json.Search)
     .then(renderMovies)
