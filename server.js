@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.use('/', express.static(path.join(__dirname, 'public')))
+app.use('/favorites', express.static(path.join(__dirname, 'public/favorites.html')))
 
 app.get('/favorites.json', (req, res) => {
   const favorites = fs.readFileSync('./favorites.json')
