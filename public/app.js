@@ -55,7 +55,7 @@ function addFavorite(event, movie) {
     event.target.parentElement.querySelector('button.add-to-favorites')
 
   addToFavoritesButton.addEventListener('click', () => {
-    fetch('http://localhost:3000/favorites', {
+    fetch('http://localhost:3000/favorites.json', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(movie)
