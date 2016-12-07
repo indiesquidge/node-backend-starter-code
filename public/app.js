@@ -2,6 +2,7 @@ const newSearchForm = document.querySelector('.new-search-form')
 const newSearchInput = document.querySelector('#new-search-input')
 const newSearchSubmit = document.querySelector('.new-search-submit')
 const movieList = document.querySelector('.movie-list')
+const errorMessage = document.querySelector('.error-message')
 
 newSearchInput.addEventListener('keyup', () => {
   newSearchSubmit.disabled = !newSearchInput.validity.valid
@@ -14,8 +15,9 @@ newSearchForm.addEventListener('submit', e => {
 
   fetch(`https://www.omdbapi.com/?s=${movieTitle}`)
     .then(response => response.json())
-    .then(json => json.Search)
+    .then(validateSearch)
     .then(renderMovies)
+    .catch(handleError)
 })
 
 function convertToElement(movie) {
@@ -61,4 +63,14 @@ function addFavorite(event, movie) {
       body: JSON.stringify(movie)
     })
   })
+}
+
+function handleError(error) {
+  errorMessage.innerHTML = error
+  setTimeout(() => errorMessage.innerHTML = null, 5000)
+}
+
+function validateSearch(responseJSON) {
+  if (responseJSON.Search) return responseJSON.Search
+  throw new Error(responseJSON.Error)
 }
