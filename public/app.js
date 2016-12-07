@@ -52,6 +52,7 @@ function renderMovies(movies) {
 }
 
 function addEventListeners(el, movie) {
+  el.classList.add('collapsed')
   el.addEventListener('click', toggleInfo)
   el.addEventListener('click', e => addFavorite(e, movie))
 }
@@ -59,8 +60,7 @@ function addEventListeners(el, movie) {
 function toggleInfo(event) {
   if (event.target.tagName === 'H3') {
     const movieEl = event.target.parentElement
-    const currHeight = movieEl.clientHeight
-    movieEl.style.height = (currHeight === 22 ? 630 : 22) + 'px'
+    movieEl.classList.toggle('collapsed')
   }
 }
 
@@ -79,7 +79,10 @@ function addFavorite(event, movie) {
 
 function handleError(error) {
   errorMessage.innerHTML = error
-  setTimeout(() => errorMessage.innerHTML = null, 5000)
+  errorMessage.classList.toggle('active')
+  setTimeout(() => {
+    errorMessage.classList.toggle('active')
+  }, 5000)
 }
 
 function validateSearch(responseJSON) {

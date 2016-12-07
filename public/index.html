@@ -4,32 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WDI Challenge</title>
+    <link rel="stylesheet" href="./assets/style.css">
   </head>
   <body>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/favorites">Favorites</a></li>
+    <div class="flex-container">
+      <header class="header">
+        <nav class="navbar">
+          <ul>
+            <li class="nav-item"><a href="/">Home</a></li>
+            <li class="nav-item"><a href="/favorites">Favorites</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <div class="error-message"></div>
+
+      <h1 class="site-title">OMDb Movie Search</h1>
+      <section class="search-movies">
+        <form class="new-search-form">
+          <label for="new-search-input" class="new-search-label">
+            Search for movies by title
+          </label>
+          <input type="text" id="new-search-input" autocomplete="off" required>
+          <input type="submit" class="btn new-search-submit" value="Submit" disabled>
+        </form>
+      </section>
+
+      <section class="movies">
+        <ul class="movie-list">
         </ul>
-      </nav>
-    </header>
-
-    <div class="error-message"></div>
-
-    <section class="search-movies">
-      <h1>OMDb Movie Search</h1>
-      <form class="new-search-form" action="">
-        <label for="new-search-input">Search for movies by title</label>
-        <input type="text" id="new-search-input" required>
-        <input type="submit" class="new-search-submit" value="Submit" disabled>
-      </form>
-    </section>
-
-    <section class="movies">
-      <ul class="movie-list">
-      </ul>
-    </section>
+      </section>
+    </div>
   </body>
   <script src="./app.js"></script>
 </html>
