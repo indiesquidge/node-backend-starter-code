@@ -22,12 +22,13 @@ newSearchForm.addEventListener('submit', e => {
 })
 
 function convertToElement(movie) {
-  return `<li class="movie" style="overflow: hidden; height: 22px;">
-            <h3 style="margin: 0;">${movie.Title}</h3>
-            <p><img src="${movie.Poster}" alt="movie-poster"></p>
-            <p>${movie.Type}</p>
-            <p>${movie.Year}</p>
-            <button class="add-to-favorites">Favorite</button>
+  const moviePoster = movie.Poster === 'N/A' ? './assets/default_poster.jpg' : movie.Poster
+  return `<li class="movie">
+            <h3 class="movie-title">${movie.Title}</h3>
+            <img class="movie-poster" src="${moviePoster}" alt="movie-poster">
+            <p class="movie-info movie-year">Relese Year: ${movie.Year}</p>
+            <p class="movie-info movie-type">Type: ${movie.Type}</p>
+            <button class="btn add-to-favorites">&#9733; Favorite</button>
           </li>`
 }
 
