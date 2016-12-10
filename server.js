@@ -10,6 +10,8 @@ const app = express()
 const isDeveloping = process.env.NODE_ENV !== 'production'
 const port = isDeveloping ? 3000 : process.env.PORT
 
+app.use('/assets', express.static(path.join(__dirname, 'app', 'assets')))
+
 // middleware to handle JSON parsing
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
