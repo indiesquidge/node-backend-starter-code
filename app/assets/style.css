@@ -7,7 +7,9 @@ html {
 }
 
 body {
-  font: menu;
+  -webkit-font-smoothing: antialiased;
+  font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco",
+    "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
 }
 
 input, textarea, select {
