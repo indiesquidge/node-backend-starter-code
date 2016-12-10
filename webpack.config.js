@@ -1,6 +1,5 @@
 const Webpack = require('webpack')
 const path = require('path')
-const nodeModulesPath = path.resolve(__dirname, 'node_modules')
 const buildPath = path.resolve(__dirname, 'public', 'build')
 const mainPath = path.resolve(__dirname, 'app', 'main.js')
 
@@ -36,15 +35,18 @@ const config = {
   module: {
 
     loaders: [
-
-      // I highly recommend using the babel-loader as it gives you
-      // ES6/7 syntax and JSX transpiling out of the box
       {
-        test: /\.js$/,
-        loader: 'babel',
-        exclude: [nodeModulesPath]
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015']
+        }
       }
     ]
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
   },
 
   // We have to manually add the Hot Replacement plugin when running
