@@ -13,6 +13,9 @@ const config = {
     // For hot style updates
     'webpack/hot/dev-server',
 
+    // Polyfill for `fetch` web API (because Safari is slacking)
+    'whatwg-fetch',
+
     // The script refreshing the browser on none hot updates
     'webpack-dev-server/client?http://localhost:8080',
 

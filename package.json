@@ -12,7 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.14.0",
-    "http-proxy": "^1.16.2"
+    "http-proxy": "^1.16.2",
+    "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.20.0",
