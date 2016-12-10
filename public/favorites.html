@@ -2,10 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WDI Challenge</title>
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/style.css">
   </head>
   <body>
-    <h1>Favorites Page</h1>
-    <script src="/build/bundle.js"></script>
+    <div class="flex-container">
+      <header class="header">
+        <nav class="navbar">
+          <ul>
+            <li class="nav-item"><a href="/">Home</a></li>
+            <li class="nav-item"><a href="/favorites">Favorites</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <h1>Favorites</h1>
+
+      <ul class="favorites"></ul>
+    </div>
   </body>
+  <script src="/build/favorites.bundle.js"></script>
 </html>
