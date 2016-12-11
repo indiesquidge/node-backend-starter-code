@@ -14,12 +14,8 @@ newSearchForm.addEventListener('submit', e => {
 
   const movieTitle = newSearchInput.value
 
-  if (!window.fetch) {
-    return handleError('This web browser cannot handle fetch requests.')
-  }
-
-  fetch(`https://www.omdbapi.com/?s=${movieTitle}`)
-    .then(response => response.json())
+  axios.get(`https://www.omdbapi.com/?s=${movieTitle}`)
+    .then(response => response.data)
     .then(validateSearch)
     .then(renderMovies)
     .then(clearForm)
@@ -74,11 +70,9 @@ function addFavorite(event, movie) {
     event.target.parentElement.querySelector('button.add-to-favorites')
 
   addToFavoritesButton.addEventListener('click', () => {
-    fetch('/favorites.json', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(movie)
-    }).then(() => addToFavoritesButton.innerHTML = 'Favorited!')
+    axios.post('/favorites.json', movie)
+      .then(() => addToFavoritesButton.innerHTML = 'Favorited!')
+      .catch((err) => handleError(err))
   })
 }
 
@@ -94,7 +88,7 @@ function handleError(error) {
   }, 5000)
 }
 
-function validateSearch(responseJSON) {
-  if (responseJSON.Search) return responseJSON.Search
-  throw new Error(responseJSON.Error)
+function validateSearch(data) {
+  if (data.Search) return data.Search
+  throw new Error(data.Error)
 }

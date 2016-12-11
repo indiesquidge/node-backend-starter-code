@@ -1,15 +1,13 @@
 const express = require('express')
 const path = require('path')
 const fs = require('fs')
-const httpProxy = require('http-proxy')
 const bodyParser = require('body-parser')
 
-const proxy = httpProxy.createProxyServer()
 const app = express()
 
 const port = process.env.PORT || 3000
 
-app.use('/assets', express.static(path.join(__dirname, 'app', 'assets')))
+app.use(express.static(path.join(__dirname, 'app')))
 
 // middleware to handle JSON parsing
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -47,26 +45,6 @@ app.post('/favorites.json', (req, res) => {
   res.setHeader('Content-Type', 'application/json')
   res.send(favorites)
 });
-
-// We require the bundler inside the if block because
-// it is only needed in a development environment.
-const bundle = require('./server/bundle.js')
-bundle()
-
-// Any requests to localhost:3000/build
-// is proxied to webpack-dev-server
-app.all('/build/*', (req, res) => {
-  proxy.web(req, res, {
-    target: 'http://localhost:8080'
-  })
-})
-
-// It is important to catch any errors from the proxy or the
-// server will crash. An example of this is connecting to the
-// server when webpack is bundling
-proxy.on('error', () => {
-  console.log('Could not connect to proxy, please try again...')
-})
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)

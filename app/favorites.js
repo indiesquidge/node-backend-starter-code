@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // keys as each movie's unique ID. This is avoid duplication of movies in our
   // favorites list, which could happen pretty easily with just an array if a
   // user clicked "favorite" multiple times on the same movie.
-  fetch('/favorites.json')
-    .then(response => response.json())
+  axios.get('/favorites.json')
+    .then(response => response.data)
     .then(json => Object.keys(json).map(movieKey => json[movieKey]))
     .then(renderFavorites)
 })
