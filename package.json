@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha test",
     "start": "node server.js"
   },
   "keywords": [],
@@ -16,5 +16,9 @@
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2",
     "whatwg-fetch": "^2.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "request": "^2.79.0"
   }
 }

@@ -46,6 +46,10 @@ app.post('/favorites.json', (req, res) => {
   res.send(favorites)
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`)
-})
+if (!module.parent) {
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`)
+  })
+}
+
+module.exports = app
