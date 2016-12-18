@@ -58,11 +58,8 @@ function addEventListeners(el, movie) {
   el.addEventListener('click', e => addFavorite(e, movie))
 }
 
-function toggleInfo(event) {
-  if (event.target.tagName === 'H3') {
-    const movieEl = event.target.parentElement
-    movieEl.classList.toggle('collapsed')
-  }
+function toggleInfo() {
+  this.classList.toggle('collapsed')
 }
 
 function addFavorite(event, movie) {
