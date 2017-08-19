@@ -1,5 +1,10 @@
 # OMDb Favorites
 
+> ⚠️ NOTE: OMDb has [gone private](https://www.patreon.com/posts/api-is-going-10743518), requiring consumers to pay for the API. While I
+> respect their decision, this small app is not something I'm willing to invest
+> monthly in, and as such the project will no longer work if accessed via the
+> Heroku link.
+
 Application making use of the OMDb API to search and favorite movies.
 
 Production site: https://omdb-favorites.herokuapp.com/
